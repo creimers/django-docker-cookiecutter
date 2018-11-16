@@ -23,7 +23,8 @@ psycopg2==2.6.1
 pytest-django==3.4.3
 pytest-factoryboy==2.0.2
 factory-boy>=2.10.0
-Faker==0.8.8
+Faker==1.0.0
+pytest-cov
 
 {% if cookiecutter.zappa == 'y' %}
 zappa==0.40.0
