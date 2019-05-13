@@ -1,0 +1,35 @@
+Django==2.2
+
+django-filter
+django-cors-headers
+
+{% if cookiecutter.graphene == 'y' %}
+graphene-django
+{% endif %}
+
+# REST
+djangorestframework
+djangorestframework-jwt
+djoser
+
+# dev
+ipdb
+
+gunicorn
+dj-database-url
+psycopg2
+
+# testing
+pytest-django
+pytest-factoryboy
+factory-boy
+Faker
+pytest-cov
+
+{% if cookiecutter.zappa == 'y' %}
+zappa
+{% endif %}
+
+{% if cookiecutter.celery == 'y' %}
+celery
+{% endif %}
