@@ -21,7 +21,7 @@ services:
       - .:/project
       - ./backups:/backups
 
-    command: /project/bin/uwsgi.sh
+    command: /project/bin/gunicorn.sh
 
   postgres:
     env_file: .env
