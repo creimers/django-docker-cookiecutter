@@ -1,4 +1,4 @@
-Django==2.2
+Django>=2.2,<3
 
 django-filter
 django-cors-headers
@@ -16,8 +16,7 @@ djoser
 ipdb
 
 gunicorn
-dj-database-url
-psycopg2
+psycopg2-binary
 
 # testing
 pytest-django
@@ -25,10 +24,6 @@ pytest-factoryboy
 factory-boy
 Faker
 pytest-cov
-
-{% if cookiecutter.zappa == 'y' %}
-zappa
-{% endif %}
 
 {% if cookiecutter.celery == 'y' %}
 celery

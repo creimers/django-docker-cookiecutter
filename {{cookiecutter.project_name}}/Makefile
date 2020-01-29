@@ -1,41 +1,16 @@
 DC := $(shell which docker-compose)
 
-{% if cookiecutter.zappa == 'y' %}
-PYTHON := env/bin/python
-PIP := env/bin/pip
-
-$(PYTHON):
-	-rm -rf env
-	virtualenv -p python2.7 env
-
-$(PIP): $(PYTHON)
-{% endif %}
-
-{% if cookiecutter.zappa == 'y' %}
-
-all: install zappa
-
-{% else %}
-
 all: install
-
-{% endif %}
 
 install: $(DC)
 	docker-compose build
 
-{% if cookiecutter.zappa == 'y' %}
-
-zappa: $(PIP)
-	$(PIP) install -r requirements.txt
-
-{% endif %}
 
 migrate: $(DC)
 	docker-compose run --rm django python ./manage.py migrate
 
 runserver: $(DC)
-	docker-compose run -p --rm {{cookiecutter.port}}:{{cookiecutter.port}} django python ./manage.py runserver 0.0.0.0:{{cookiecutter.port}}
+	docker-compose run -p {{cookiecutter.port}}:{{cookiecutter.port}} --rm django python ./manage.py runserver 0.0.0.0:{{cookiecutter.port}}
 
 superuser: $(DC)
 	docker-compose run --rm django python ./manage.py createsuperuser
