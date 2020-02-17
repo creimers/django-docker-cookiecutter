@@ -5,6 +5,7 @@ django-cors-headers
 
 {% if cookiecutter.graphene == 'y' %}
 graphene-django
+django-graphql-jwt
 {% endif %}
 
 # REST
