@@ -21,6 +21,8 @@ psycopg2-binary
 
 # testing
 pytest-django
+pytest-sugar
+pytest-instafail
 pytest-factoryboy
 factory-boy
 Faker

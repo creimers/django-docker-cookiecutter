@@ -22,7 +22,7 @@ shell:
 	docker-compose run --rm django python ./manage.py shell
 
 backup:
-	docker-compose exec db pg_dump -U postgres -d postgres -f ./db_backups/`date +%Y-%m-%d_%H:%M:%S`.sql
+	docker-compose exec postgres pg_dump -U postgres -d postgres -f ./db_backups/`date +%Y-%m-%d_%H:%M:%S`.sql
 
 up:
 	docker-compose up
