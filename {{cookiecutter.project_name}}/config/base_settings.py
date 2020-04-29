@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+{% if cookiecutter.celery == 'y' %}
+import datetime
+{% endif %}
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -128,3 +131,18 @@ MEDIA_URL = "/media/"
 LANGUAGES = [
     ("de", "German"),
 ]
+
+AUTH_USER_MODEL = "custom_user.CustomUser"
+
+{% if cookiecutter.celery == 'y' %}
+GRAPHENE = {
+    "SCHEMA": "config.schema.schema",
+    "MIDDLEWARE": ["graphql_jwt.middleware.JSONWebTokenMiddleware",],
+}
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(minutes=10),
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
+}
+{% endif %}

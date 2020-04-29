@@ -17,7 +17,19 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+{% if cookiecutter.celery == 'y' %}
+from graphene_django.views import GraphQLView
+
+GraphQLView.graphiql_template = "graphene_graphiql_explorer/graphiql.html"
+{% endif %}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    {% if cookiecutter.celery == 'y' %}
+    url(
+        r"^graphql/$",
+        GraphQLView.as_view(graphiql=True),
+        name="graphql",
+    ),
+    {% endif %}
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

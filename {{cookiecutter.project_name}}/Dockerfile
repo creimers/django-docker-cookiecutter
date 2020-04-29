@@ -4,10 +4,5 @@ ADD . /project
 WORKDIR /project
 
 RUN pip install --upgrade pip pip-tools
+RUN pip-compile --rebuild --output-file requirements.txt requirements.in
 RUN pip install -r requirements.txt
-
-{% if cookiecutter.celery != 'y' %}
-
-RUN rm -f /project/config/celery_config.py
-
-{% endif %}
