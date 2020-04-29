@@ -12,7 +12,6 @@ graphene_graphiql_explorer
 # REST
 djangorestframework
 djangorestframework-jwt
-djoser
 
 # dev
 ipdb
