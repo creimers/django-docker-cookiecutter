@@ -7,8 +7,8 @@ from graphene_django.filter import DjangoFilterConnectionField
 from apps.custom_user.mutations import (
     Register,
     ConfirmEmail,
-    # ResetPassword,
-    # ResetPasswordConfirm,
+    ResetPassword,
+    ResetPasswordConfirm,
 )
 
 USER = get_user_model()
@@ -46,8 +46,8 @@ class Mutation(graphene.ObjectType):
     # account
     register = Register.Field()
     confirm_email = ConfirmEmail.Field()
-    # reset_password = ResetPassword.Field()
-    # reset_password_confirm = ResetPasswordConfirm.Field()
+    reset_password = ResetPassword.Field()
+    reset_password_confirm = ResetPasswordConfirm.Field()
 
 
 schema = graphene.Schema(query=RootQuery, mutation=Mutation)
