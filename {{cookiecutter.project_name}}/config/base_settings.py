@@ -146,3 +146,5 @@ GRAPHQL_JWT = {
     "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
 }
 {% endif %}
+
+PROTOCOL = "http"

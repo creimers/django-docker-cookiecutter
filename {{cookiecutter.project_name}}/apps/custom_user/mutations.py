@@ -5,7 +5,7 @@ from graphql import GraphQLError
 from graphql_jwt.decorators import login_required
 
 from apps.custom_user.emails import send_activation_email, send_password_reset_email
-from apps.custom_user.utils import decode_uid
+from apps.custom_user.utils import decode_uid, validate_new_password
 
 UserModel = get_user_model()
 
@@ -42,9 +42,9 @@ class Register(graphene.Mutation):
         user.save()
 
         {% if cookiecutter.celery == 'y' %}
-        send_activation_email.delay(user.id, info.context)
+        send_activation_email.delay(user.id)
         {% else %}
-        send_activation_email(user.id, info.context)
+        send_activation_email(user.id)
         {% endif %}
 
         return Register(success=True)
