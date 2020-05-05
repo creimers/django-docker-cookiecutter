@@ -1,6 +1,6 @@
 # django + docker cookiecutter
 
-[pydanny/cookiecutter-django](https://github.com/pydanny/cookiecutter-django) is the uncrowned king, obviously. But at times I need something more lightweight. That's how this cookiecutter came about.
+[pydanny/cookiecutter-django](https://github.com/pydanny/cookiecutter-django) is the uncrowned king, obviously. But at times I need something more lightweight and more specific. That's how this cookiecutter came about.
 
 ## create project
 
