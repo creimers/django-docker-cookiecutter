@@ -9,7 +9,7 @@ SUCCESS = "\x1b[1;32m [SUCCESS]: "
 
 def remove_celery_files():
     file_names = [
-        os.path.join("config", "celery_app.py"),
+        os.path.join("config", "celery_config.py"),
     ]
     for file_name in file_names:
         os.remove(file_name)
