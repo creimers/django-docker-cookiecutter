@@ -3,6 +3,8 @@ Django>=2.2,<3
 django-filter
 django-cors-headers
 
+django-environ
+
 {% if cookiecutter.graphene == 'y' %}
 graphene-django
 django-graphql-jwt

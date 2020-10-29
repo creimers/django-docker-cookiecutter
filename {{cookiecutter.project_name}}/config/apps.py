@@ -8,7 +8,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
 ]
 
-THIRD_PARTY_APPS = ["corsheaders", "graphene_graphiql_explorer"]
+THIRD_PARTY_APPS = ["corsheaders"]
 
 LOCAL_APPS = ["apps.custom_user"]
 

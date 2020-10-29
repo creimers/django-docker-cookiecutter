@@ -1,18 +1,54 @@
-version: '2'
+version: '3'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
 
 services:
   django:
-    restart: always
-    environment:
-      DJANGO_SETTINGS_MODULE: config.env.production
+    build:
+      context: .
+
+    env_file: .env
+
+    depends_on:
+      - postgres
+
+    ports:
+      - "{$DJANGO_PORT}:8000"
+
+    volumes:
+      - .:/project
+      - ./backups:/backups
+
+    command: /project/bin/gunicorn.sh
+    restart: "unless-stopped"
 
   postgres:
-    restart: always
+    env_file: .env
+    image: postgres:12
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backup:/backups
+      - ./backups:/db_backups
+    restart: "unless-stopped"
 
 {% if cookiecutter.celery == 'y' %}
   celery:
-    restart: always
+    build:
+      context: .
+    env_file: .env
+    command: celery worker -l info -b amqp://user:user@rabbit:5672// -A config.celery_config
+    volumes:
+      - .:/project
+    links:
+      - postgres
+      - rabbit
 
   rabbit:
-    restart: always
+    image: rabbitmq:alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=user
 {% endif %}

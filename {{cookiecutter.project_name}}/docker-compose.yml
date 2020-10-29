@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 volumes:
   postgres_data: {}
@@ -12,9 +12,9 @@ services:
     env_file: .env
 
     ports:
-      - "{{cookiecutter.port}}:{{cookiecutter.port}}"
+      - "8000:8000"
 
-    links:
+    depends_on:
       - postgres
 
     volumes:
@@ -25,7 +25,7 @@ services:
 
   postgres:
     env_file: .env
-    image: postgres:9.6
+    image: postgres:12
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
